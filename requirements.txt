@@ -3,4 +3,4 @@ apache-airflow[celery, postgres, rabbitmq, crypto, statsd]==1.10.11
 gunicorn<20.0,>=19.5.0
 marshmallow<2.20,>=2.18.0
 kombu<4.7,>=4.6.10
-
+amqp<2.7,>=2.6.0
