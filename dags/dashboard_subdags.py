@@ -1,7 +1,8 @@
 import uuid
 
 from airflow import DAG
-from airflow.operators import BashOperator, PythonOperator
+from airflow.operators.bash_operator import BashOperator
+from airflow.operators.python_operator import PythonOperator
 from airflow.operators.subdag_operator import SubDagOperator
 
 
@@ -44,8 +45,8 @@ def monthly_subdag(parent_dag, child_dag, default_args, schedule_interval, inter
     get_agg_id = PythonOperator(
         task_id='get_uuid',
         python_callable=generate_uuid,
-        dag=monthly_dag,
-        xcom_push=True
+        op_kwargs={'xcom_push': True},
+        dag=monthly_dag
     )
 
     create_aggregation_record = BashOperator(
